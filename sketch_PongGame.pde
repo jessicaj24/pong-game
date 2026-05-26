@@ -16,13 +16,21 @@ float ballx, bally, balld;
 float vx,vy;
 
 boolean wkey,skey,upkey,downkey;
+boolean onePlayer=true;
+
+int leftScore=0;
+int rightScore=0;
+int timer=100;
 
 Minim minim;
 AudioPlayer theme, coin, bump, gameover;
 
 void setup() {
   size(800,800);
-  mode=GAME;
+  mode=INTRO;
+  textAlign(CENTER,CENTER);
+  rectMode(CENTER);
+  imageMode(CENTER);
   leftx=0;
   lefty=height/2;
   leftd=200;
@@ -35,6 +43,10 @@ void setup() {
   wkey=skey=upkey=downkey=false;
   vx=5;
   vy=2;
+  minim=new Minim(this);
+  theme= minim.loadFile("MUSIC.mp3");
+  gameover= minim.loadFile("FAILURE.wav");
+  coin= minim.loadFile("SUCCESS.wav");
 }
 
 void draw() {

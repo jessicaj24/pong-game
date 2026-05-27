@@ -14,6 +14,8 @@ final int GAMEOVER=4;
 float leftx, lefty, leftd, rightx, righty, rightd;
 float ballx, bally, balld;
 float vx,vy;
+float distLeft = dist(ballx, bally, leftx, lefty);
+float distRight = dist(ballx, bally, rightx, righty);
 
 boolean wkey,skey,upkey,downkey;
 boolean onePlayer=true;

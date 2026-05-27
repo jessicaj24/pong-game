@@ -10,12 +10,11 @@ void game(){
   if (skey==true) lefty=lefty+5;
   if (upkey==true) righty=righty-5;
   if (downkey==true) righty=righty+5;
-  if (onePlayer == true){
-    if (bally < righty){
-    righty = righty - 4;
-    }
-    if (bally > righty){
-    righty = righty + 4;
+  if (onePlayer == true) {
+    if (bally < righty - 4) {
+      righty = righty - 4;
+    } else if (bally > righty + 4) {
+      righty = righty + 4;
     }
   }
   fill(255);
@@ -45,23 +44,34 @@ void game(){
     rightScore = rightScore + 1;
     ballx = width/2;
     bally = height/2;
-    vx = random(0,5);
-    vy = random(0,5);
+    vx = random(-5,5);
+    vy = random(-5,5);
     timer = 100;
-  }
-  if (ballx > width){
+  } else if (ballx > width){
     leftScore = leftScore + 1;
     ballx = width/2;
     bally = height/2;
-    vx = random(0,5);
-    vy = random(0,5);
+    vx = random(-5,5);
+    vy = random(-5,5);
     timer = 100;
   }
-  if (dist(ballx,bally,leftx,lefty) <=balld/2 + leftd/2){
-    vx = vx * -1;
+  distLeft = dist(ballx, bally, leftx, lefty);
+  if (distLeft < balld/2 + leftd/2) {
+    vx = (ballx - leftx) / 10;
+    vy = (bally - lefty) / 10;
+    if (vx<2) {
+      vx=2;
+    }
+    ballx=leftx+(balld/2+leftd/2)+1;
   }
-  if (dist(ballx,bally,rightx,righty)<= balld/2 + rightd/2){
-    vx = vx * -1;
+  distRight = dist(ballx, bally, rightx, righty);
+  if (distRight < balld/2 + rightd/2) {
+    vx = (ballx - rightx) / 10;
+    vy = (bally - righty) / 10;
+    if (vx>-2) {
+      vx=-2;
+    }
+    ballx=rightx-(balld/2+rightd/2)-1;
   }
   text(leftScore, width/4, 50);
   text(rightScore, width*3/4, 50);

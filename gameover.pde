@@ -35,7 +35,7 @@ void gameoverClicks(){
   rightScore=0;
   ballx = width/2;
   bally = height/2;
-  vx = random(0,5);
-  vy = random(0,5);
+  vx = random(-5,5);
+  vy = random(-5,5);
   timer = 100;
 }
